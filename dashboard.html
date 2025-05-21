@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>INCOME ZONE - Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #ff0000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    header {
+      width: 100%;
+      background: white;
+      color: black;
+      padding: 15px 20px;
+      border-radius: 0 0 30px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Anton', sans-serif;
+      font-size: 28px;
+    }
+    .welcome {
+      margin: 30px 0 10px 0;
+      font-size: 22px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px black;
+    }
+    .dashboard-box {
+      background: white;
+      color: #ff0000;
+      border-radius: 20px;
+      padding: 25px 30px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(255,0,0,0.7);
+      text-align: left;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+    .dashboard-box ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+    .dashboard-box li {
+      padding: 8px 0;
+      border-bottom: 1px solid #ffcccc;
+    }
+    .logout-btn {
+      margin-top: 25px;
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .logout-btn:hover {
+      background: #ff4444;
+    }
+  </style>
+</head>
+<body>
+  <header>INCOME ZONE</header>
+  <div class="welcome" id="welcomeText">স্বাগতম, ইউজার!</div>
+  <div class="dashboard-box" id="dashboardInfo">
+    <ul>
+      <li><strong>ইউজার আইডি:</strong> <span id="userId">---</span></li>
+      <li><strong>ব্যালেন্স:</strong> ৳<span id="balance">0</span></li>
+      <li><strong>রেফারাল সংখ্যা:</strong> <span id="referrals">0</span></li>
+      <li><strong>অ্যাক্টিভেশন স্ট্যাটাস:</strong> <span id="activationStatus">Inactive</span></li>
+    </ul>
+  </div>
+  <button class="logout-btn" onclick="logout()">লগআউট</button>
+
+  <script>
+    // লোকালস্টোরেজ থেকে ডাটা নেয়ার ফাংশন
+    function loadDashboard() {
+      const userName = localStorage.getItem('userName') || 'অপরিচিত';
+      const userId = localStorage.getItem('userId') || 'N/A';
+      const balance = localStorage.getItem('balance') || '0';
+      const referrals = localStorage.getItem('referrals') || '0';
+      const activated = localStorage.getItem('activated') === 'true' ? 'Active' : 'Inactive';
+
+      document.getElementById('welcomeText').textContent = `স্বাগতম, ${userName}!`;
+      document.getElementById('userId').textContent = userId;
+      document.getElementById('balance').textContent = balance;
+      document.getElementById('referrals').textContent = referrals;
+      document.getElementById('activationStatus').textContent = activated;
+
+      // যদি অ্যাক্টিভ না হয়, তাহলে দেখাও একটা এলার্ট
+      if (activated === 'Inactive') {
+        alert('আপনার অ্যাক্টিভেশন পেন্ডিং রয়েছে! দয়া করে আগে একটিভ করুন।');
+      }
+    }
+
+    // লগআউট ফাংশন
+    function logout() {
+      localStorage.clear();
+      alert('আপনি সফলভাবে লগআউট হয়েছেন।');
+      window.location.href = 'login.html'; // লগইন পেজে রিডাইরেক্ট
+    }
+
+    window.onload = loadDashboard;
+  </script>
+</body>
+</html>
