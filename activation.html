@@ -1,76 +1,62 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>অ্যাক্টিভেশন - INCOME ZONE</title>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet" />
-<style>
-  body {
-    font-family: 'Arial', sans-serif;
-    background: #ff0000;
-    color: white;
-    text-align: center;
-    padding: 20px;
-  }
-  header {
-    background: white;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 0 0 30px 30px;
-    margin-bottom: 30px;
-  }
-  .logo {
-    font-family: 'Anton', sans-serif;
-    font-size: 30px;
-    color: black;
-  }
-  form {
-    background: white;
-    color: black;
-    max-width: 400px;
-    margin: auto;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 0 10px #990000;
-  }
-  input, button {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 1px solid #990000;
-    font-size: 16px;
-  }
-  button {
-    background: #990000;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-  }
-  .error {
-    color: yellow;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>অ্যাক্টিভেশন - INCOME ZONE</title>
+  <style>
+    body {
+      background: #ff0000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-top: 50px;
+      font-size: 30px;
+    }
+    .activation-box {
+      background: white;
+      color: black;
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+    button {
+      padding: 12px 30px;
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    button:hover {
+      background: green;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="logo">INCOME ZONE</div>
-</header>
-<h2>অ্যাক্টিভেশন ফি প্রদান করুন</h2>
-<p>১০০ টাকা পরিশোধের পর নিচে ট্রানজেকশন আইডি দিন</p>
-<form id="activationForm">
-  <input type="text" id="txId" placeholder="ট্রানজেকশন আইডি দিন" required />
-  <button type="submit">অ্যাক্টিভ করুন</button>
-  <p class="error" id="errorMsg"></p>
-</form>
+  <h1>অ্যাক্টিভেশন প্রয়োজন</h1>
+  <div class="activation-box">
+    <p>আপনি এখনও অ্যাক্টিভ না। একটিভ করতে নিচের বাটনে ক্লিক করুন।</p>
+    <button onclick="activateAccount()">এখনই একটিভ করুন</button>
+  </div>
 
-<script>
-  const errorMsg = document.getElementById('errorMsg');
-  const form = document.getElementById('activationForm');
-
-  // ইউজার চেক করা
-  const username = localStorage.getItem('loggedInUser');
-  if (!username) {
-    alert('দয়া
+  <script>
+    function activateAccount() {
+      // লোকালস্টোরেজে একটিভেশন সেট করা
+      localStorage.setItem('activated', 'true');
+      alert("অ্যাকাউন্ট সফলভাবে অ্যাক্টিভ হয়েছে!");
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>
